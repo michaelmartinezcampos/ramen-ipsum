@@ -1,86 +1,150 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
 
-        "http://www.w3.org/TR/html4/loose.dtd">
-
-<html lang="en">
+<html lang='en'>
 
 <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    
-    <script src="https://cdn.jsdelivr.net/min/1.5/min.min.css"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+
+    <!-- <script src='https://cdn.jsdelivr.net/min/1.5/min.min.css'></script> -->
+    <!-- <script src='//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js'></script> -->
 
     <style>
-        #link-container { text-align: center;}
+        #link-container {
+            text-align: center;
+        }
+        
         #link {
-                color: green;
-                display: inline-block;
-                padding: 10px;
-            }
+            color: green;
+            display: inline-block;
+            padding: 10px;
+        }
     </style>
-    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link href='favicon.ico' rel='icon' type='image/x-icon' />
     <title>Ramen Ipsum Generator</title>
 
 </head>
 
 <body>
-<div class="row">
-    <div class="col c12"><img src="s00130-ramen.png" style=" display: block;
+    <div class='row'>
+        <div class='col c12'><img src='s00130-ramen.png' style=' display: block;
         margin-left: auto;
-        margin-right: auto">
+        margin-right: auto'>
+        </div>
+        <!-- animatedramen.gif, ramen.jpg, ramen.png-->
     </div>
-     <!-- animatedramen.gif, ramen.jpg, ramen.png-->
-</div>
 
-<?php
-$servername = "localhost";
-$username = "mmartinez_ramen";
-$password = "mickety";
+    <div id="theIpsum">text to be cleared</div>
 
-// Create connection
-$conn = new mysqli($servername, $username, $password);
+    <form method='post' id="generatorForm">
+        <label for='slider'>How many paragraphs do you want?</label>
+        <input type='range' min='1' max='8' step='1' name='slider' id='slider'>
+        <input type='submit' name='submit' value='Get Noodling'>
+        <button onclick="clear()">Clear</button>
+        <!--make this button monochromatic-->
+    </form>
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
-?>
+    <!-- <div id='link-container'>
+        <a href='https://www.linkedin.com/in/michaelmartinezcampos' id='link'>Made by MMC - Ramen Otaku</a>
+    </div> -->
 
-
-
-<?php
-function selectParagraph($db, $id) {
-    $query = sprintf('SELECT content FROM paragraphs WHERE id = %d', $id);
-    $result = $pdo->query($sql);
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    $result->closeCursor();
-    return $row['content'];
-    } 
-
-
-<form method="post">
- <label for="slider">How many paragraphs do you want?</label>
- <input type="range" min="1" max="4" step="1" name="slider">
- <input type="submit" name="submit" value="Get Noodling">
-</form>
-
-<?php
-if (isset($_POST['slider'])) {
-    $i = $_POST['slider'];
-    while ($i--) {
-        $id = rand(1, $maxID);
-        $paragraph = selectParagraph($db, $id);
-        echo '<p>' . $paragraph . '</p>';
-    }
-} 
-
-    <div id="link-container">
-        <a href="https://www.linkedin.com/in/michaelmartinezcampos" id="link">Made by MMC - Ramen Otaku</a>
-    </div>
 </body>
 
+<script>
+    document.getElementById('generatorForm').onsubmit = function() {
+        var test = "blah blah blah blah blah blah blah blah blah blah ";
+        console.log(document.getElementById('slider').value);
+        clear();
+        generateIpsum();
+        return false;
+    }
+
+    function generateIpsum() {
+        for (i = 0; i < document.getElementById('slider').value; i++) {
+            // ipsumText += ipsumText + "<br>";
+            test += test + "<br>";
+        }
+        document.getElementById("theIpsum").innerHTML = test;
+    }
+
+    function clear() {
+        //console.log('what is happening');
+        document.getElementById("theIpsum").innerHTML = "";
+    }
+
+    //display on screen
+    //copy function
+    //animations
+    //email submission from #wordSubmission
+    var ramenWords = [
+        'shio',
+        'shoyu',
+        'miso',
+        'tonkotsu',
+        'umami',
+        'negi',
+        'kotteri',
+        'assari',
+        'paitan',
+        'kaedama',
+        'tampopo',
+        'kansui',
+        'chashu',
+        'kakuni',
+        'momofuku',
+        'shinsengumi',
+        'keizo',
+        'kamaboko',
+        'ajitsuke',
+        'tamago',
+        'mirin',
+        'onsen',
+        'tamago',
+        'hokkaido',
+        'enoki',
+        'menma',
+        'kimchi',
+        'nori',
+        'wakame',
+        'beni shoga',
+        'togarashi',
+        'sansho',
+        'yuzukosho',
+        'ninniku-dare',
+        'curry',
+        'mayu',
+        'hakata',
+        'sapporo',
+        'tokyo',
+        'yokohama',
+        'ramenya',
+        'kyushu',
+        'akamiso',
+        'fukuoka',
+        'ippudo',
+        'santouka',
+        'ivan',
+        'tsukemen',
+        'mazemen',
+        'yuji',
+        'tantan-men',
+        'hiyashi',
+        'chuka',
+        'chanpon',
+        'yakisoba',
+        'ramyeon',
+        'torigawa',
+        'showa',
+        'j-kenji',
+        'niboshi',
+        'fried garlic',
+        'chili oil',
+        'green onion',
+        'butter',
+        'corn',
+        'bamboo shoot',
+        'ichiran'
+    ]
+</script>
+
 </html>
-
-
